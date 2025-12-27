@@ -8,4 +8,9 @@ global:
 	@uv tool install --force /home/rehan/Projects/timer
 	@echo "Done. You can now run 'timer' from anywhere."
 
-.PHONY: local global
+uninstall:
+	@echo "Uninstalling timer..."
+	-@uv tool uninstall timer
+	@echo "Done."
+
+.PHONY: local global uninstall
