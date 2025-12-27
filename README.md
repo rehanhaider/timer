@@ -1,13 +1,16 @@
 # Timer CLI
 
-A powerful and visually stunning terminal-based timer application built with [Textual](https://textual.textualize.io/) and [Typer](https://typer.tiangolo.com/).
+A powerful and visually stunning terminal-based timer application built with [Textual](https://textual.textualize.io/) and [Typer](https://typer.tiangolo.com/) which has:
+
+
+- **TUI Interface**: Beautiful, responsive terminal user interface with a premium feel.
+- **Notifications**: Visual and audio feedback (bell) when a countdown completes.
 
 ## Features
 
 - **Stopwatch**: Precise stopwatch with centisecond resolution.
 - **Countdown**: Configurable countdown timer with support for seconds, minutes, and hours.
-- **TUI Interface**: Beautiful, responsive terminal user interface with a premium feel.
-- **Notifications**: Visual and audio feedback (bell) when a countdown completes.
+
 
 ## Installation
 
