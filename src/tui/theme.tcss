@@ -46,18 +46,23 @@ FooterLabel {
 
 /* Main content area */
 #content {
-    height: 1fr;
+    # height: 1fr;
     width: 100%;
-    align: center middle;
+    /* Use explicit axis alignment types:
+       - vertical: https://textual.textualize.io/css_types/vertical/
+       - horizontal: https://textual.textualize.io/css_types/horizontal/ */
+    align-vertical: middle;
+    align-horizontal: center;
     padding: 1 2;
 }
 
 /* Center “card” */
 #display-container {
-    background: #d5b77c 5%;
-    border: round #d5b77c;
+
     outline: round #d5b77c 20%;
-    align: center middle;
+    layout: vertical;
+    align-horizontal: center;
+    align-vertical: middle;
     padding: 3 10;
     margin: 1 0 2 0;
     width: auto;
@@ -66,19 +71,31 @@ FooterLabel {
     box-sizing: border-box;
 }
 
+/* Center the time + status using horizontal rows (more reliable for multi-line Digits) */
+#time-row,
+#status-row {
+    layout: horizontal;
+    width: 100%;
+    height: auto;
+    align-vertical: middle;
+    align-horizontal: center;
+}
+
+#status-row {
+    margin-top: 1;
+}
+
 
 Digits {
     color: #d5b77c;
     text-opacity: 100%;
-    width: 100%;
+    width: auto;
     content-align: center middle;
     text-align: center;
 }
 
 #time-display {
-    width: 100%;
-    content-align: center middle;
-    text-align: center;
+    width: auto;
 }
 
 Digits.muted {
@@ -91,7 +108,7 @@ Digits.danger {
 }
 
 #status {
-    margin-top: 1;
+    width: auto;
     text-style: italic;
     text-opacity: 70%;
     color: #d5b77c;
@@ -117,7 +134,8 @@ Digits.danger {
     layout: horizontal;
     height: auto;
     width: auto;
-    align: center middle;
+    align-vertical: middle;
+    align-horizontal: center;
     margin-top: 1;
 }
 
@@ -140,9 +158,7 @@ Button:disabled {
     border: round #d5b77c 35%;
 }
 
-Button:disabled:hover {
-    offset: 0 0;
-}
+/* Hover effects should be color-only (no offsets) */
 
 Button.start {
     background: #d5b77c;

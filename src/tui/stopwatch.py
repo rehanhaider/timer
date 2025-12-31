@@ -30,8 +30,10 @@ class StopwatchTui(App):
         yield Header(show_clock=True)
         with Container(id="content"):
             with Container(id="display-container"):
-                yield Digits("00:00.00", id="time-display")
-                yield Static("Ready", id="status", classes="ready")
+                with Container(id="time-row"):
+                    yield Digits("00:00.00", id="time-display")
+                with Container(id="status-row"):
+                    yield Static("Ready", id="status", classes="ready")
             with Container(id="buttons"):
                 # Don't use `variant=` here; we want fully deterministic styling via TCSS.
                 yield Button("START", id="start", classes="start")
