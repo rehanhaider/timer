@@ -46,8 +46,7 @@ FooterLabel {
 
 /* Main content area */
 #content {
-    # height: 1fr;
-    width: 100%;
+    /* Container defaults to height: 1fr; we keep that behavior (no hard-coded heights). */
     /* Use explicit axis alignment types:
        - vertical: https://textual.textualize.io/css_types/vertical/
        - horizontal: https://textual.textualize.io/css_types/horizontal/ */
@@ -58,7 +57,8 @@ FooterLabel {
 
 /* Center “card” */
 #display-container {
-
+    background: #d5b77c 5%;
+    border: round #d5b77c;
     outline: round #d5b77c 20%;
     layout: vertical;
     align-horizontal: center;
@@ -67,15 +67,24 @@ FooterLabel {
     margin: 1 0 2 0;
     width: auto;
     height: auto;
-    min-width: 58;
-    box-sizing: border-box;
+    /* With width:auto, use content-box so padding expands the card instead of
+       shrinking the content area (prevents Digits from being clipped). */
+    box-sizing: content-box;
+}
+
+/* Center each section independently so we don't need width/min-width coupling */
+#card-row,
+#buttons-row {
+    layout: horizontal;
+    height: auto;
+    align-horizontal: center;
+    align-vertical: middle;
 }
 
 /* Center the time + status using horizontal rows (more reliable for multi-line Digits) */
 #time-row,
 #status-row {
     layout: horizontal;
-    width: 100%;
     height: auto;
     align-vertical: middle;
     align-horizontal: center;
@@ -143,7 +152,6 @@ Button {
     background: #d5b77c 15%;
     color: #d5b77c;
     border: round #d5b77c;
-    min-width: 16;
     height: 3;
     padding: 0 4;
     margin: 0 2;

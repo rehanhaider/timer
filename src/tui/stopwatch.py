@@ -29,16 +29,18 @@ class StopwatchTui(App):
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
         with Container(id="content"):
-            with Container(id="display-container"):
-                with Container(id="time-row"):
-                    yield Digits("00:00.00", id="time-display")
-                with Container(id="status-row"):
-                    yield Static("Ready", id="status", classes="ready")
-            with Container(id="buttons"):
-                # Don't use `variant=` here; we want fully deterministic styling via TCSS.
-                yield Button("START", id="start", classes="start")
-                yield Button("STOP", id="stop", classes="stop", disabled=True)
-                yield Button("RESET", id="reset", classes="reset")
+            with Container(id="card-row"):
+                with Container(id="display-container"):
+                    with Container(id="time-row"):
+                        yield Digits("00:00.00", id="time-display")
+                    with Container(id="status-row"):
+                        yield Static("Ready", id="status", classes="ready")
+            with Container(id="buttons-row"):
+                with Container(id="buttons"):
+                    # Don't use `variant=` here; we want fully deterministic styling via TCSS.
+                    yield Button("START", id="start", classes="start")
+                    yield Button("STOP", id="stop", classes="stop", disabled=True)
+                    yield Button("RESET", id="reset", classes="reset")
         yield Footer()
 
     def on_mount(self) -> None:

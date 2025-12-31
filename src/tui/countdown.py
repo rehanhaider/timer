@@ -29,11 +29,12 @@ class CountdownTui(App):
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
         with Container(id="content"):
-            with Container(id="display-container"):
-                with Container(id="time-row"):
-                    yield Digits("00:00", id="countdown")
-                with Container(id="status-row"):
-                    yield Static("Running", id="status", classes="running")
+            with Container(id="card-row"):
+                with Container(id="display-container"):
+                    with Container(id="time-row"):
+                        yield Digits("00:00", id="countdown")
+                    with Container(id="status-row"):
+                        yield Static("Running", id="status", classes="running")
         yield Footer()
 
     def on_mount(self) -> None:
