@@ -57,8 +57,6 @@ FooterLabel {
 
 /* Center “card” */
 #display-container {
-    background: #d5b77c 5%;
-    border: round #d5b77c;
     outline: round #d5b77c 20%;
     layout: vertical;
     align-horizontal: center;
