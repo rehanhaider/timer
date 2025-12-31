@@ -15,7 +15,7 @@ A powerful and visually stunning terminal-based timer application built with [Te
 
 ## Installation
 
-- Requires **Python 3.13+**
+- Requires **Python 3.10+**
 - Installs two commands: `tm` (recommended) and `time-manager`
 
 From PyPI:
@@ -91,7 +91,7 @@ tm cd 5 m --cli
 ### Prerequisites
 
 - [uv](https://github.com/astral-sh/uv) installed on your system.
-- Python 3.13+
+- Python 3.10+
 
 ### Installation for Development
 
