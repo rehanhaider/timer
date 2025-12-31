@@ -1,15 +1,15 @@
-from time import monotonic
 from textual.app import App, ComposeResult
 from textual.containers import Container
 from textual.widgets import Header, Footer, Digits, Button
 from textual.reactive import reactive
+from core.timer import Stopwatch
 
 
-class StopwatchApp(App):
+class StopwatchTui(App):
     """A simple stopwatch app."""
 
     CSS = """
-    StopwatchApp {
+    StopwatchTui {
         align: center middle;
         background: $surface;
     }
@@ -65,9 +65,10 @@ class StopwatchApp(App):
     ]
 
     time_elapsed = reactive(0.0)
-    start_time = reactive(monotonic())
-    running = reactive(False)
-    accumulated_time = reactive(0.0)
+
+    def __init__(self):
+        super().__init__()
+        self.stopwatch = Stopwatch()
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
@@ -83,8 +84,7 @@ class StopwatchApp(App):
         self.set_interval(1 / 60, self.update_time)
 
     def update_time(self) -> None:
-        if self.running:
-            self.time_elapsed = self.accumulated_time + (monotonic() - self.start_time)
+        self.time_elapsed = self.stopwatch.elapsed
 
         minutes, seconds = divmod(self.time_elapsed, 60)
         hours, minutes = divmod(minutes, 60)
@@ -98,40 +98,31 @@ class StopwatchApp(App):
         self.query_one("#time-display", Digits).update(time_str)
 
     def action_toggle_timer(self) -> None:
-        if self.running:
-            self.stop_timer()
-        else:
-            self.start_timer()
+        self.stopwatch.toggle()
+        self.update_buttons()
 
     def action_reset_timer(self) -> None:
-        self.reset_timer()
+        self.stopwatch.reset()
+        self.time_elapsed = 0.0
+        self.query_one("#time-display", Digits).update("00:00.00")
+        self.update_buttons()
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "start":
-            self.start_timer()
+            self.stopwatch.start()
         elif event.button.id == "stop":
-            self.stop_timer()
+            self.stopwatch.stop()
         elif event.button.id == "reset":
-            self.reset_timer()
+            self.stopwatch.reset()
+            self.time_elapsed = 0.0
+            self.query_one("#time-display", Digits).update("00:00.00")
 
-    def start_timer(self):
-        if not self.running:
-            self.start_time = monotonic()
-            self.running = True
+        self.update_buttons()
+
+    def update_buttons(self):
+        if self.stopwatch.is_running:
             self.query_one("#start").disabled = True
             self.query_one("#stop").disabled = False
-
-    def stop_timer(self):
-        if self.running:
-            self.accumulated_time += monotonic() - self.start_time
-            self.running = False
+        else:
             self.query_one("#start").disabled = False
             self.query_one("#stop").disabled = True
-
-    def reset_timer(self):
-        self.running = False
-        self.accumulated_time = 0.0
-        self.time_elapsed = 0.0
-        self.query_one("#time-display", Digits).update("00:00.00")
-        self.query_one("#start").disabled = False
-        self.query_one("#stop").disabled = True

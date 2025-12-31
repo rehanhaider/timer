@@ -1,5 +1,5 @@
 # Timer TUI Components
-from tui.stopwatch import StopwatchApp
-from tui.countdown import CountdownApp
+from tui.stopwatch import StopwatchTui
+from tui.countdown import CountdownTui
 
-__all__ = ["StopwatchApp", "CountdownApp"]
+__all__ = ["StopwatchTui", "CountdownTui"]

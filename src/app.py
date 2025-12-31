@@ -1,22 +1,27 @@
 import typer
-from tui import StopwatchApp, CountdownApp
+from tui import StopwatchTui, CountdownTui
+from cli import run_stopwatch_cli, run_countdown_cli
 
 # Create the Typer app
 app = typer.Typer(help="A CLI based timer using Textual.")
 
 
 @app.command()
-def sw():
+def sw(cli: bool = typer.Option(False, "--cli", help="Run in CLI mode instead of TUI.")):
     """
     Start a stopwatch.
     """
-    StopwatchApp().run()
+    if cli:
+        run_stopwatch_cli()
+    else:
+        StopwatchTui().run()
 
 
 @app.command()
 def cd(
     amount: int = typer.Argument(..., help="The amount of time."),
     unit: str = typer.Argument("m", help="The unit of time. [s]econds, [m]inutes, [h]ours."),
+    cli: bool = typer.Option(False, "--cli", help="Run in CLI mode instead of TUI."),
 ):
     """
     Start a countdown timer.
@@ -45,7 +50,10 @@ def cd(
         typer.secho("Error: Time must be greater than 0.", fg=typer.colors.RED, err=True)
         raise typer.Exit(code=1)
 
-    CountdownApp(seconds).run()
+    if cli:
+        run_countdown_cli(seconds)
+    else:
+        CountdownTui(seconds).run()
 
 
 def main():
