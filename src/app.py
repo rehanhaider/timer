@@ -1,8 +1,10 @@
-"""Timer entry point.
+"""Termclock entry point.
 
 Commands:
-- `timer sw`                 Start a stopwatch
-- `timer cd <amount> [unit]` Start a countdown timer
+- `termclock sw`                 Start a stopwatch
+- `clk sw`                        Start a stopwatch
+- `termclock cd <amount> [unit]` Start a countdown timer
+- `clk cd <amount> [unit]`       Start a countdown timer
 """
 
 from __future__ import annotations
@@ -21,7 +23,7 @@ from cli import run_countdown_cli, run_stopwatch_cli
 from tui import CountdownTui, StopwatchTui
 
 # Create the Typer app
-app = typer.Typer(help="A CLI based timer using Textual.")
+app = typer.Typer(help="A terminal based stopwatch and countdown timer.")
 
 CLI_MODE = typer.Option(False, "--cli", help="Run in CLI mode instead of TUI.")
 

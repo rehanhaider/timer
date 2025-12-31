@@ -41,13 +41,13 @@ make local
 Start a stopwatch to track elapsed time:
 
 ```bash
-timer sw
+termclock sw
 ```
 
 For CLI mode (non-interactive):
 
 ```bash
-timer sw --cli
+termclock sw --cli
 ```
 
 **Controls (TUI mode):**
@@ -60,15 +60,15 @@ timer sw --cli
 Start a countdown for a specific duration:
 
 ```bash
-timer cd 5 m    # 5 minutes
-timer cd 60 s   # 60 seconds
-timer cd 1 h    # 1 hour
+termclock cd 5 m    # 5 minutes
+termclock cd 60 s   # 60 seconds
+termclock cd 1 h    # 1 hour
 ```
 
 For CLI mode (non-interactive):
 
 ```bash
-timer cd 5 m --cli
+termclock cd 5 m --cli
 ```
 
 **Controls (TUI mode):**

@@ -3,13 +3,13 @@ from textual.containers import Container
 from textual.widgets import Header, Footer, Digits, Button, Static
 from textual.reactive import reactive
 from core.formatting import format_time
-from core.timer import Stopwatch
+from core.termclock import Stopwatch
 
 
 class StopwatchTui(App):
     """A simple stopwatch app."""
 
-    TITLE = "Timer"
+    TITLE = "Termclock"
     SUB_TITLE = "Stopwatch"
 
     CSS_PATH = "theme.tcss"

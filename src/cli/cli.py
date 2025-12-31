@@ -8,7 +8,7 @@ from rich.panel import Panel
 from rich.text import Text
 from rich import box
 from core.formatting import format_time
-from core.timer import Stopwatch, Countdown
+from core.termclock import Stopwatch, Countdown
 
 
 class NonBlockingInput:

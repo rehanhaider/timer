@@ -1,7 +1,7 @@
 [project]
-name = "timer"
-version = "0.2.3"
-description = "A CLI based timer using Textual"
+name = "chronox"
+version = "0.2.7"
+description = "A terminal based stopwatch and countdown timer"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -11,7 +11,8 @@ dependencies = [
 ]
 
 [project.scripts]
-timer = "app:main"
+clk = "app:main"
+chronox = "app:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -25,3 +26,10 @@ include = ["src/tui/theme.tcss"]
 dev = [
     "pyinstaller>=6.17.0",
 ]
+
+
+[[tool.uv.index]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+publish-url = "https://test.pypi.org/legacy/"
+explicit = true

@@ -3,13 +3,13 @@ from textual.containers import Container
 from textual.widgets import Digits, Footer, Header, Static
 from textual.reactive import reactive
 from core.formatting import format_time
-from core.timer import Countdown
+from core.termclock import Countdown
 
 
 class CountdownTui(App):
     """A countdown timer app."""
 
-    TITLE = "Timer"
+    TITLE = "Termclock"
     SUB_TITLE = "Countdown"
 
     CSS_PATH = "theme.tcss"

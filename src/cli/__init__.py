@@ -1,4 +1,4 @@
-# Timer CLI Components
+# Termclock CLI Components
 
 from .cli import run_stopwatch_cli, run_countdown_cli
 
