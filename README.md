@@ -43,8 +43,8 @@ time-manager provides two command names for convenience:
 Both commands work identically. Examples:
 
 ```bash
-tm sw         # or: time-manager sw
-tm cd 5 m     # or: time-manager cd 5 m
+tm sw              # or: time-manager sw   (also: tm stopwatch)
+tm cd 5 m          # or: time-manager cd 5 m (also: tm countdown 5 m)
 ```
 
 ### Stopwatch
