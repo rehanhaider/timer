@@ -29,7 +29,7 @@ uninstall:
 	-@sudo rm /usr/local/bin/tm
 	@echo "Done."
 
-publish:
+publish: build
 	@echo "Publishing to PyPI..."
 	@PROD="$(PROD)" ./scripts/publish.sh
 	@echo "Done. Published to PyPI."
