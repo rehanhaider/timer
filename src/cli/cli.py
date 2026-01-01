@@ -3,6 +3,8 @@ import sys
 import select
 import termios
 import tty
+from rich.align import Align
+from rich.console import Group
 from rich.live import Live
 from rich.panel import Panel
 from rich.text import Text
@@ -51,14 +53,22 @@ def run_stopwatch_cli():
 
                 # Update Display
                 elapsed = stopwatch.elapsed
-                time_str = format_time(elapsed, show_centiseconds=True)
+                time_str = format_time(elapsed, show_centiseconds=False)
+                # Always display HH:MM:SS (even when hours == 0)
+                if time_str.count(":") == 1:
+                    time_str = f"00:{time_str}"
 
                 # Visual feedback for paused state
                 style = "bold green" if stopwatch.is_running else "dim green"
                 border_style = "green" if stopwatch.is_running else "white"
 
+                display = Group(
+                    Align.center(Text(time_str, style=style)),
+                    Align.center(Text("HH:MM:SS", style="dim")),
+                )
+
                 panel = Panel(
-                    Text(time_str, style=style, justify="center"),
+                    display,
                     title="Stopwatch",
                     subtitle=subtitle,
                     box=box.ROUNDED,

@@ -81,12 +81,17 @@ FooterLabel {
 
 /* Center the time + status using horizontal rows (more reliable for multi-line Digits) */
 #time-row,
+#hint-row,
 #status-row {
     layout: horizontal;
     # width: auto;
     height: auto;
     align-vertical: middle;
     align-horizontal: center;
+}
+
+#hint-row {
+    margin-top: 1;
 }
 
 #status-row {
@@ -135,6 +140,15 @@ Digits.danger {
 #status.danger {
     color: #8b3a3a;
     text-opacity: 100%;
+}
+
+/* Stopwatch time format hint */
+#format-hint {
+    width: auto;
+    text-style: italic;
+    text-opacity: 60%;
+    color: #d5b77c;
+    content-align: center middle;
 }
 
 /* Buttons (stopwatch only) */

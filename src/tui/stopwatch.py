@@ -6,6 +6,14 @@ from core.formatting import format_time
 from core.termclock import Stopwatch
 
 
+def _format_stopwatch(seconds: float) -> str:
+    """Always format stopwatch as HH:MM:SS"""
+    time_str = format_time(seconds, show_centiseconds=False)
+    if time_str.count(":") == 1:
+        return f"00:{time_str}"
+    return time_str
+
+
 class StopwatchTui(App):
     """A simple stopwatch app."""
 
@@ -32,7 +40,9 @@ class StopwatchTui(App):
             with Container(id="card-row"):
                 with Container(id="display-container"):
                     with Container(id="time-row"):
-                        yield Digits("00:00.00", id="time-display")
+                        yield Digits("00:00:00", id="time-display")
+                    with Container(id="hint-row"):
+                        yield Static("HH:MM:SS", id="format-hint")
                     with Container(id="status-row"):
                         yield Static("Ready", id="status", classes="ready")
             with Container(id="buttons-row"):
@@ -51,7 +61,7 @@ class StopwatchTui(App):
 
     def update_time(self) -> None:
         self.time_elapsed = self.stopwatch.elapsed
-        time_str = format_time(self.time_elapsed, show_centiseconds=True)
+        time_str = _format_stopwatch(self.time_elapsed)
         self.query_one("#time-display", Digits).update(time_str)
 
     def action_toggle_timer(self) -> None:
@@ -61,7 +71,7 @@ class StopwatchTui(App):
     def action_reset_timer(self) -> None:
         self.stopwatch.reset()
         self.time_elapsed = 0.0
-        self.query_one("#time-display", Digits).update("00:00.00")
+        self.query_one("#time-display", Digits).update("00:00:00")
         self.update_buttons()
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
@@ -72,7 +82,7 @@ class StopwatchTui(App):
         elif event.button.id == "reset":
             self.stopwatch.reset()
             self.time_elapsed = 0.0
-            self.query_one("#time-display", Digits).update("00:00.00")
+            self.query_one("#time-display", Digits).update("00:00:00")
 
         self.update_buttons()
 
